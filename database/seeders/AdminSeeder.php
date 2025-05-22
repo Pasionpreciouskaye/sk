@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('admin'),
             'gender' => 'Female',
-            'date_of_birth' => '2005-03-16',
+            'date_of_birth' => '1997-05-16',
             'address' => 'Taguig City',
         ]);
     }
