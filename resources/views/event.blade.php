@@ -39,16 +39,16 @@
             {{ $data instanceof \Illuminate\Pagination\LengthAwarePaginator ? $data->links() : '' }}
         </div>
 
-        <!-- Modal -->
+         <!-- Modal -->
         <div x-show="showModal" x-cloak
             class="fixed inset-0 bg-black/80 bg-opacity-50 z-50 flex items-center justify-center">
             <div @click.away="showModal = false" x-transition
-                class="bg-white rounded-xl max-w-6xl w-full mx-4 max-h-100 shadow-lg overflow-hidden">
+                class="bg-white rounded-xl max-w-3xl w-full mx-4 shadow-lg overflow-hidden">
 
                 <div class="grid md:grid-cols-2 gap-0">
                     <div class="h-full">
                         <img :src="'/' + activeEvent.file_path" alt="Event image"
-                            class="w-full h-100 object-cover object-top rounded-l-xl">
+                            class="w-full h-full object-cover object-center rounded-l-xl">
                     </div>
                     <div class="p-6 flex flex-col justify-between">
                         <div>

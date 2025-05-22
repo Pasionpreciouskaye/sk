@@ -35,6 +35,7 @@
                 <div class="hidden md:flex space-x-6">
                     <a href="{{ route('home') }}" class="text-gray-700 hover:text-pink-500">Home</a>
                     <a href="{{ route('contact') }}" class="text-gray-700 hover:text-pink-500">Contact</a>
+                    <a href="{{ route('project') }}" class="text-gray-700 hover:text-pink-500">Projects</a>
                     @if (Auth::user())
                     <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-pink-500"><i
                             class="fa-solid fa-right-to-bracket"></i></a>
