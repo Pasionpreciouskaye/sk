@@ -199,10 +199,11 @@
 </section>
 @php
 $memberNames = [
-'June Lyn Tabanao', 'SKK MAC', 'SKS Tonton', 'SKK Chester', 'SKK Jam',
-'SKK AJ', 'SKK Noime', 'SKK Summer', 'SKK Iris', 'SKK Karen'
+    'June Lyn Tabanao', 'SKK MAC', 'SKS Tonton', 'SKK Chester', 'SKK Jam',
+    'SKK AJ', 'SKK Noime', 'SKK Summer', 'SKK Iris', 'SKK Karen'
 ];
 @endphp
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css" />
 
 <section class="py-16 bg-gray-100">
@@ -212,59 +213,73 @@ $memberNames = [
         <div id="sk-carousel" class="splide">
             <div class="splide__track">
                 <ul class="splide__list">
-                    @for ($i = 1; $i <= count($memberNames); $i++) <li class="splide__slide">
-                        <div
-                            class="bg-white rounded-lg shadow p-4 text-center hover:shadow-lg hover:-translate-y-1 transition-transform">
-                            <img src="{{ asset("images/members/admin$i.webp") }}" alt="{{ $memberNames[$i - 1] }}"
-                                class="w-full h-48 object-cover object-top rounded mb-4">
-                            <h3 class="font-semibold text-lg text-gray-800 mb-2">{{ $memberNames[$i - 1] }}</h3>
-                        </div>
+                    @for ($i = 1; $i <= count($memberNames); $i++)
+                        <li class="splide__slide">
+                            <div
+                                class="bg-white rounded-lg shadow p-4 text-center hover:shadow-lg hover:-translate-y-1 transition-transform cursor-pointer"
+                                @if($memberNames[$i - 1] === 'SKK MAC') onclick="openModal()" @endif>
+                                <img src="{{ asset("images/members/admin$i.webp") }}" alt="{{ $memberNames[$i - 1] }}"
+                                    class="w-full h-48 object-cover object-top rounded mb-4">
+                                <h3 class="font-semibold text-lg text-gray-800 mb-2">{{ $memberNames[$i - 1] }}</h3>
+                            </div>
                         </li>
-                        @endfor
+                    @endfor
                 </ul>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Floating Modal for SKK MAC -->
+<div id="macModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-lg relative">
+        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-xl">&times;</button>
+        <h2 class="text-xl font-bold mb-4 text-pink-600">Mark Anthony C. Capulong</h2>
+        <p><strong>Age:</strong> 24 years old</p>
+        <p class="mt-2"><strong>Educational Attainment:</strong><br>
+            Bachelor of Science in Civil Engineering<br>
+            Major in Structural Engineering
+        </p>
+        <p class="mt-2"><strong>Leadership Track:</strong></p>
+        <ul class="list-disc list-inside">
+            <li>Co-Founder, BANAIYEC</li>
+            <li>Auditor, BANAIYEC</li>
+            <li>Chairman of the Board, BANAIYEC</li>
+            <li>Student Director, College of Engineering</li>
+            <li>President, PICE – TCUSC</li>
+            <li>Treasurer, SSG, BNHS</li>
+        </ul>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    new Splide('#sk-carousel', {
-        perPage: 5,
-        perMove: 1,
-        gap: '1rem',
-        pagination: false,
-        breakpoints: {
-            1024: {
-                perPage: 3
-            },
-            640: {
-                perPage: 2
-            },
-            480: {
-                perPage: 1
-            },
-        }
-    }).mount();
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        new Splide('#sk-carousel', {
+            perPage: 5,
+            perMove: 1,
+            gap: '1rem',
+            pagination: false,
+            breakpoints: {
+                1024: {
+                    perPage: 3
+                },
+                640: {
+                    perPage: 2
+                },
+                480: {
+                    perPage: 1
+                },
+            }
+        }).mount();
+    });
 
-function carousel(slideData) {
-    return {
-        slides: slideData,
-        currentIndex: 0,
-        timer: null,
-        init() {
-            this.timer = setInterval(() => {
-                this.next();
-            }, 3000);
-        },
-        next() {
-            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-        },
-        goTo(index) {
-            this.currentIndex = index;
-        }
+    function openModal() {
+        document.getElementById('macModal').classList.remove('hidden');
     }
-}
+
+    function closeModal() {
+        document.getElementById('macModal').classList.add('hidden');
+    }
 </script>
 @endsection
